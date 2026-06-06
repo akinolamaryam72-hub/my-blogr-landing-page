@@ -1,0 +1,680 @@
+
+/* Basic Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100%; /* Base font size */
+}
+
+body {
+    font-family: 'Overpass', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    font-size: 1rem;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    text-align: center; /* Global text alignment for mobile viewports */
+}
+
+/* Define CSS Variables (Custom Properties) */
+:root {
+    /* Primary Colors */
+    --light-red: hsl(356, 100%, 66%); /* CTA text */
+    --very-light-red: hsl(355, 100%, 74%); /* CTA hover background */
+    --very-dark-blue: hsl(208, 49%, 24%); /* Headings */
+
+    /* Neutral Colors */
+    --white: hsl(0, 0%, 100%); /* Text */
+    --grayish-blue: hsl(240, 2%, 79%); /* Footer text */
+    --very-dark-grayish-blue: hsl(207, 13%, 34%); /* Body copy */
+    --very-dark-black-blue: hsl(240, 10%, 16%); /* Footer background */
+    --light-gray-hover: rgba(255,255,255,0.05); /* For nav item hover */
+
+    /* Gradient - Background alt (intro and CTA mobile) */
+    --gradient-intro-light: hsl(13, 100%, 72%);
+    --gradient-intro-dark: hsl(353, 100%, 62%);
+
+    /* Gradient - Body (footer) */
+    --gradient-body-light: hsl(237, 17%, 21%);
+    --gradient-body-dark: hsl(237, 23%, 32%);
+
+    --font-family-body: 'Overpass', sans-serif;
+    --font-family-headings: 'Ubuntu', sans-serif;
+
+    --text-color-dark: var(--very-dark-grayish-blue);
+    --text-color-light: var(--white);
+
+    --header-bg-gradient: linear-gradient(to right, var(--gradient-intro-light), var(--gradient-intro-dark));
+    --footer-bg-gradient: linear-gradient(to right, var(--gradient-body-light), var(--gradient-body-dark));
+
+    /* NEW: Specific color for the dark blue banner */
+    --dark-blue-banner-bg: #2c2d3f;
+}
+
+/* Global styles, typography, and layout for mobile */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    color: var(--very-dark-blue);
+    line-height: 1.2;
+    margin-bottom: 0.8em;
+}
+
+.section-title {
+    font-weight: 700; /* Make all major section headings noticeably bolder */
+}
+
+h1 {
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+p {
+    margin-bottom: 1em;
+    color: var(--text-color-dark);
+}
+
+a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-align: center;
+    font-family: var(--font-family-headings);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--white);
+    color: var(--light-red);
+    border: 1px solid var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--very-light-red);
+    color: var(--white);
+    border-color: var(--very-light-red);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    border: 1px solid var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: var(--white);
+    color: var(--light-red);
+    text-decoration: none;
+}
+
+/* Global SVG styling */
+svg {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+    background: var(--header-bg-gradient);
+    padding: 4rem 1.5rem;
+    padding-bottom: 15rem; /* Increased vertical padding to wrap hero content */
+    border-bottom: none;
+    position: relative;
+    border-bottom-left-radius: 80px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 70vh;
+}
+
+/* Abstract bubble shapes for visual depth */
+header::before {
+    content: '';
+    position: absolute;
+    top: -250px;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -300px;
+    right: -250px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-color-light);
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.main-nav .logo {
+    font-family: var(--font-family-headings);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+}
+
+/* Mobile Menu Button */
+.mobile-menu-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.mobile-menu-button .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--white);
+    border-radius: 5px;
+    transition: all 0.3s linear;
+}
+
+/* Navigation Menu */
+.nav-menu {
+    list-style: none;
+    position: absolute;
+    top: 6rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    width: auto;
+    background-color: var(--white);
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out, visibility 0.5s;
+    z-index: 1000;
+}
+
+.nav-menu.active {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    padding: 1.5rem 1rem;
+    transition: max-height 0.5s ease-in, opacity 0.5s ease-in, visibility 0.5s;
+}
+
+.nav-menu li {
+    margin: 0.75rem 0;
+}
+
+.nav-menu a {
+    color: var(--very-dark-blue);
+    font-family: var(--font-family-headings);
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.5rem 1rem;
+    display: block;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background-color: var(--light-gray-hover);
+    border-radius: 5px;
+    color: var(--very-dark-blue);
+    text-decoration: none;
+}
+
+
+/* Hero Section Styles */
+.hero {
+    text-align: center;
+    color: var(--text-color-light); /* All text inside hero block to white */
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero h1,
+.hero p {
+    color: var(--text-color-light); /* Ensure hero text is white */
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    margin-top: 0;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Features Section (Section One: "Designed for the future") */
+.features {
+    padding: 5rem 1.5rem;
+    text-align: center; /* Center all text */
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.features h2,
+.features .feature-item h3,
+.features .feature-item p {
+    text-align: center; /* Ensure all headings and paragraphs are centered */
+}
+
+.feature-item {
+    margin-bottom: 2.5rem;
+}
+
+/* State of Art Section (Section Two: "State of the Art Infrastructure") */
+.state-of-art {
+    background-color: var(--dark-blue-banner-bg); /* Deep dark indigo/navy */
+    color: var(--text-color-light);
+    border-top-left-radius: 120px; /* Aggressive border-radius */
+    border-bottom-right-radius: 120px; /* Aggressive border-radius */
+    padding: 10rem 1.5rem 5rem;
+    text-align: center;
+    position: relative;
+    margin-top: 5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.state-of-art svg {
+    margin-top: -8rem; /* Overlap fix for phones SVG */
+}
+
+/* Free Powerful Tools Section (Section Three: "Free, open, simple") */
+.free-powerful-tools {
+    padding: 5rem 1.5rem;
+    text-align: center; /* Center all text */
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.free-powerful-tools h2,
+.free-powerful-tools .tools-item h3,
+.free-powerful-tools .tools-item p {
+    text-align: center; /* Ensure all headings and paragraphs are centered */
+}
+
+.free-powerful-tools svg {
+    order: -1; /* Move laptop SVG to the very top in mobile view */
+}
+
+.tools-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tools-item {
+    margin-bottom: 2.5rem;
+}
+
+.tools-item h3 {
+    color: var(--very-dark-blue);
+    margin-bottom: 0.75rem;
+}
+
+.tools-item p {
+    color: var(--text-color-dark);
+    line-height: 1.8;
+}
+
+
+/* Footer Styles */
+footer {
+    background-color: var(--very-dark-black-blue);
+    background: var(--footer-bg-gradient);
+    color: var(--grayish-blue);
+    padding: 4rem 1.5rem;
+    text-align: center;
+    border-top-right-radius: 80px;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer .logo {
+    color: var(--text-color-light);
+    font-family: var(--font-family-headings);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.footer-nav {
+    width: 100%;
+}
+
+.footer-column {
+    margin-bottom: 2rem;
+}
+
+.footer-column h4 {
+    color: var(--text-color-light);
+    font-family: var(--font-family-headings);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column a {
+    color: var(--grayish-blue);
+    font-family: var(--font-family-body);
+    font-size: 0.95rem;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+    color: var(--white);
+}
+
+/* Media queries for tablet and desktop */
+@media (min-width: 768px) {
+    html {
+        font-size: 100%;
+    }
+
+    header {
+        padding: 4.5rem 5rem;
+        padding-bottom: 15rem; /* Maintain padding for tablet */
+        min-height: 60vh;
+    }
+
+    .main-nav {
+        justify-content: flex-start;
+        gap: 2.5rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .mobile-menu-button {
+        display: none;
+    }
+
+    .nav-menu {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        background-color: transparent;
+        width: auto;
+        padding: 0;
+        box-shadow: none;
+        max-height: none;
+        overflow: visible;
+        visibility: visible;
+        opacity: 1;
+        transition: none;
+        margin-left: 2rem;
+    }
+
+    .nav-menu li {
+        margin: 0 1rem;
+    }
+
+    .nav-menu a {
+        color: var(--text-color-light);
+        font-weight: 400;
+        padding: 0;
+        transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+        background-color: transparent;
+        text-decoration: underline;
+        color: var(--text-color-light);
+    }
+
+    .hero {
+        padding: 0 5rem;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 500;
+        margin-bottom: 1.25rem;
+    }
+
+    .hero p {
+        padding: 0 8rem;
+        font-size: 1.25rem;
+    }
+
+    .features {
+        padding: 6rem 5rem;
+        display: flex;
+        flex-direction: row;
+        text-align: left; /* Override for tablet */
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .features h2,
+    .features .feature-item h3,
+    .features .feature-item p {
+        text-align: left; /* Align left on tablet */
+    }
+
+    .state-of-art {
+        padding: 10rem 5rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left; /* Override for tablet */
+        border-top-left-radius: 120px; /* Aggressive border-radius */
+        border-bottom-right-radius: 120px; /* Aggressive border-radius */
+    }
+
+    .state-of-art-content {
+        flex: 1;
+        padding-left: 5rem;
+    }
+
+    .state-of-art h2,
+    .state-of-art p {
+        text-align: left; /* Align left on tablet */
+    }
+
+    .state-of-art svg {
+        margin-top: 0; /* Reset margin for desktop */
+    }
+
+    .free-powerful-tools {
+        padding: 6rem 5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        text-align: left; /* Override for tablet */
+    }
+
+    .free-powerful-tools h3,
+    .free-powerful-tools p {
+        text-align: left; /* Align left on tablet */
+    }
+
+    .free-powerful-tools svg {
+        order: 1; /* Reset order for desktop */
+    }
+
+    .tools-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    footer {
+        padding: 4rem 5rem;
+        text-align: left; /* Override for tablet */
+    }
+
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    footer .logo {
+        margin-bottom: 0;
+    }
+
+    .footer-nav {
+        display: flex;
+        gap: 4rem;
+        width: auto;
+    }
+
+    .footer-column {
+        margin-bottom: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    header {
+        padding: 5rem 10rem;
+        padding-bottom: 15rem; /* Maintain padding for desktop */
+        min-height: 70vh;
+    }
+
+    .main-nav {
+        gap: 3rem;
+        padding: 1.5rem 2rem;
+    }
+
+    .nav-menu {
+        margin-left: 3rem;
+    }
+
+    .hero {
+        padding: 0 10rem;
+    }
+
+    .hero h1 {
+        font-size: 4.2rem;
+        font-weight: 500;
+    }
+
+    .hero p {
+        padding: 0 12rem;
+        font-size: 1.3rem;
+    }
+
+    .features {
+        padding: 8rem 10rem;
+    }
+
+    .features-content {
+        padding-left: 3rem;
+    }
+
+    .state-of-art {
+        padding: 10rem 10rem;
+    }
+
+    .state-of-art-content {
+        padding-left: 5rem;
+    }
+
+    .free-powerful-tools {
+        padding: 8rem 10rem;
+    }
+
+    footer {
+        padding: 4rem 10rem;
+    }
+
+    .footer-nav {
+        gap: 6rem;
+    }
+}
